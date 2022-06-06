@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
+use App\Http\Resources\ProductResource;
+
 class ProductController extends Controller
 {
     private $product;
@@ -23,7 +25,8 @@ class ProductController extends Controller
     public function show($id){
         $products = $this->product->find($id);
 
-        return response()->json($products);
+        // return response()->json($products);
+        return new ProductResource($products);
     }
 
     public function save(Request $request){
