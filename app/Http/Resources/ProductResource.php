@@ -22,4 +22,8 @@ class ProductResource extends JsonResource
 
         return $this->resource->toArray();
     }
+
+    public function with($request){
+        return ['extra-single-data' => 'Retornar nesta chamada...'];
+    }
 }
