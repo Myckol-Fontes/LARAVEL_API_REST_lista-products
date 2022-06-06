@@ -22,9 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('products')->group(function(){
-    Route::post('/', [ProductController::class, 'save']);
+    Route::post('/', [ProductController::class, 'save'])->middleware('auth.basic');
     Route::get('/{id}', [ProductController::class, 'show']);
-    Route::get('/', [ProductController::class, 'index']);
+    Route::get('/', [ProductController::class, 'index'])->middleware('auth.basic');
     Route::put('/', [ProductController::class, 'update']);
     Route::delete('/{id}', [ProductController::class, 'delete']);
 });
