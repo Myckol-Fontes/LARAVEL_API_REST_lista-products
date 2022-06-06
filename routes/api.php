@@ -20,10 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::get('products', function(){
-//     return \App\Model\Product::all();
-// });
-
 Route::prefix('products')->group(function(){
     Route::post('/', [ProductController::class, 'save']);
     Route::get('/{id}', [ProductController::class, 'show']);
