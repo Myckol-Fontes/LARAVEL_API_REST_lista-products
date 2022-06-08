@@ -17,7 +17,14 @@ class ProductController extends Controller
     }
 
 
-    public function index(){
+    public function index(Request $request){
+
+        if($request->has('fields')){
+            $fields = $request->get('fields');
+
+            return response()->json($fields);
+        }
+
         $products = $this->product->paginate(10);
 
         // return response()->json($products);
