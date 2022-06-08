@@ -19,16 +19,17 @@ class ProductController extends Controller
 
     public function index(Request $request){
 
+        $products = $this->product;
+
         if($request->has('fields')){
             $fields = $request->get('fields');
 
-            return response()->json($fields);
+            $products = $products->selectRaw($fields);
         }
 
-        $products = $this->product->paginate(10);
 
         // return response()->json($products);
-        return new ProductCollection($products);
+        return new ProductCollection($products->paginate(10));
     }
 
     public function show($id){
